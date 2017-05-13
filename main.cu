@@ -246,7 +246,7 @@ unsigned int handle_ip4_bf(char *host, size_t len) {
 	shift_n3 = size_to_shift(n3);
 	shift_n4 = size_to_shift(n4);
 
-	test_str_ip4 <<< blocks, threads >>> (dmatches, dmatch_array, start_hash, beg, shift_n3, shift_n4, dhost);
+	test_str_ip4<<<blocks, threads>>>(dmatches, dmatch_array, start_hash, beg, shift_n3, shift_n4, dhost);
 
 	cudaMemcpy((void *) &hmatches, dmatches, sizeof *dmatches, cudaMemcpyDeviceToHost);
 	matches += hmatches;
